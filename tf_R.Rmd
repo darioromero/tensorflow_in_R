@@ -1,5 +1,6 @@
 ---
 title: "Linear Regression with Tensorflow in R - Comparison with *lm* model"
+author: "Dario H. Romero, MSc CS - Data Scientist"
 output:
   html_document: default
   html_notebook: default
@@ -84,6 +85,7 @@ An important part of creating regression models is evaluating how well they fit 
 ```{r warning=FALSE}
 
 linearModel <- lm(formula = y ~ x, data = data)
+
 # Print Linear Model $lm$ parameters $W: weights$ and $b: bias$ 
 cat("Weights: ", round(linearModel$coefficients[2], 7), " - bias: ", round(linearModel$coefficients[1], 7))
 autoplot(linearModel, label.size = 3)
