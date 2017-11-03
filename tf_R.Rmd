@@ -1,6 +1,6 @@
 ---
 title: "Linear Regression with Tensorflow in R - Comparison with *lm* model"
-author: "Dario H. Romero, MSc CS - Data Scientist"
+author: "Dario H. Romero, MSc CS - Oil & Gas Data Scientist"
 output:
   html_document: default
   html_notebook: default
@@ -10,7 +10,7 @@ editor_options:
 
 A proof of concept (PoC) analysis utilizing tensorflow in RStudio for a linear regression modeling, 
 including a comparison with *lm* basic function for linear regression in R  
-<center><h4 color=blue>[right click for the Github project](https://github.com/darioromero/tensorflow_in_R)</h4></center>
+<center><h5 color=blue>[right click for the Github project](https://github.com/darioromero/tensorflow_in_R)</h5></center>
 
 ```{r, message=FALSE, include=FALSE}
 library(tensorflow)
@@ -54,7 +54,7 @@ sess = tf$Session()
 sess$run(tf$global_variables_initializer())
 ```
 
-Fit the line and print tf model parameters $W$:Weights and $b:$bias
+Fit the line and print tf model parameters $W$: Weights and $b$: bias
 ```{r}
 # Fit the line (Learns best fit is W: 0.14, b: 0.65)
 for (step in 1:201) {
