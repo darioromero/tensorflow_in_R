@@ -10,6 +10,7 @@ editor_options:
 
 A proof of concept (PoC) analysis utilizing tensorflow in RStudio for a linear regression modeling, 
 including a comparison with *lm* basic function for linear regression in R  
+<center><h4 color=blue>[right click for the Github project](https://github.com/darioromero/tensorflow_in_R)</h4></center>
 
 ```{r, message=FALSE, include=FALSE}
 library(tensorflow)
