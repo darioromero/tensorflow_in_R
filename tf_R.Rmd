@@ -8,13 +8,16 @@ editor_options:
   chunk_output_type: console
 ---
 
-A proof of concept (PoC) analysis utilizing tensorflow in RStudio for a linear regression modeling, 
-including a comparison with *lm* basic function for linear regression in R  
+A proof of concept (PoC) analysis utilizing tensorflow in RStudio 
+for a linear regression modeling, including a comparison with *lm* 
+basic function for linear regression in R.
+
 <center><h5 color=blue>[right click for the Github project](https://github.com/darioromero/tensorflow_in_R)</h5></center>
 
 ```{r, message=FALSE, include=FALSE}
 library(tensorflow)
-# install_tensorflow() # this must be run only one time. The install will create a tf env called r-tensorflow
+# install_tensorflow() # this must be run only one time. 
+# The install will create a tf env called r-tensorflow
 library(tidyverse)
 library(tibble)
 library(ggfortify)
@@ -23,6 +26,7 @@ library(ggfortify)
 ```{r}
 # function to add some noise to data
 noise <- function(x, decibel = 1) {
+  set.seed(123)
   n <- length(x)
   noise <- runif(n, min(x)*decibel, max(x)*decibel)
 }
@@ -57,7 +61,7 @@ sess$run(tf$global_variables_initializer())
 Fit the line and print tf model parameters $W$: Weights and $b$: bias
 ```{r}
 # Fit the line (Learns best fit is W: 0.14, b: 0.65)
-for (step in 1:201) {
+for (step in 1:206) {
   sess$run(train)
   if (step %% 20 == 0)
     cat(step, " - W:", sess$run(W),  " - b:", sess$run(b), "\n")
@@ -81,17 +85,30 @@ g
 ```
 
 Regression diagnostics plots
-An important part of creating regression models is evaluating how well they fit the data. We can use the package **ggfortify** to let *ggplot2* interpret *lm* objects and create diagnostic plots.
+An important part of creating regression models is evaluating 
+how well they fit the data. We can use the package **ggfortify** 
+to let *ggplot2* interpret *lm* objects and create diagnostic plots.
 
 ```{r warning=FALSE}
-
 linearModel <- lm(formula = y ~ x, data = data)
 
 # Print Linear Model $lm$ parameters $W: weights$ and $b: bias$ 
-cat("Weights: ", round(linearModel$coefficients[2], 7), " - bias: ", round(linearModel$coefficients[1], 7))
+cat("Weights: ", round(linearModel$coefficients[2], 7), 
+    " - bias: ", round(linearModel$coefficients[1], 7))
 autoplot(linearModel, label.size = 3)
-
 ```
+
+Comments:
+
+- We observe on the Residuals vs Fitted plot a random pattern in 
+the distribution of residuals, suggesting that a linear regression 
+is valid to represent this relationship with the dependent variable.
+
+- Linear regression therefore works the best in this case where a
+linear relationship between the dependent and non-dependent variables
+exists.
+
+
 
 
 
